@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styledark.css' %}">
+</head>
+<body>
+    <div class="conteneur_info">
+        <div class="left">
+            <div class="adresseIP">
+                <h1>IP adress : <br> {{ visit_ip }}</h1>
+            </div>
+            <div class="agent">
+                <h1>User agent : <br> {{ visit_user_agent }}</h1>
+            </div>
+            <div class="adressephy">
+                <h1>Location : <br> {{ country }} <br> {{city}} <br> {{ org }}</h1>
+            </div>
+        </div>            
+        <a href="{% url 'anime_list' %}" class="bouton-rond">
+            <img src="/static/moon.jpg" alt="moon">
+        </a>  
+        <div class="counter">
+            <h1>Number of visit : <br> {{ visit_counter }}</h1>
+            {% for visit in visit_date %}
+                <p>
+                    <h1>{{ visit.date }}</h1>
+                </p>
+            {% endfor %}
+        </div>  
+    </div>
+</body>
+</html>
+

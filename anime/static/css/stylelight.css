@@ -1,0 +1,74 @@
+.conteneur_listes {
+    display: flex;
+}
+.liste-anime, .liste-manga {
+    flex: 1;
+    padding: 20px;
+}
+.anime-card {
+    position: relative;
+    perspective: 1000px;
+    width: 150px;
+    height: 180px;
+    margin: 10px;
+    padding: 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+.anime-card .card-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+.anime-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+.anime-card .card-front, .anime-card .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.anime-card .card-front {
+    background-color: beige;
+}
+.anime-card .card-back {   
+    transform: rotateY(180deg);
+    display: none;
+    position: absolute;
+    transition: transform 0.5s;
+    transform-origin: right;
+}
+.anime-card:hover .card-back {
+    transform: rotateY(0deg);
+    display: block;
+}
+.anime-card:hover .card-front {
+    display: none;
+}
+.anime-card img {
+    max-width: 100%;
+    height: 120px;
+    display: block;
+    margin-bottom: 10px;
+}
+.anime-card h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+.bouton-rond {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 999;
+}
+.bouton-rond img {
+    width: 100%;
+    height: auto;
+}

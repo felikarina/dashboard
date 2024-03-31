@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stylelight.css' %}">
+</head>
+<body>
+    <div class="conteneur_listes">
+        <div class="liste-anime">
+            <h1>Top 6 anime</h1>
+            {% for anime in anime_list %}
+                <div class="anime-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="{{ anime.image_url }}" alt="{{ anime.title }}">
+                            <h3>{{ anime.title }}</h3>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <p>{{ anime.synopsis }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="liste-manga">
+            <h1>Top 6 manga</h1>
+            {% for manga in manga_list %}
+                <div class="anime-card">
+                    <div class="card-inner"> 
+                        <div class="card-front">
+                            <img src="{{ manga.image_url2 }}" alt="{{ manga.title2 }}">
+                            <h3>{{ manga.title2 }}</h3>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <p>{{ manga.synopsis2 }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <a href="{% url 'dark' %}" class="bouton-rond">
+        <img src="/static/moon.jpg" alt="moon">
+    </a>
+</body>
+</html>
+

@@ -1,8 +1,10 @@
 import requests
 
-url = "https://api.jikan.moe/v4/anime/24"
+def fetch_data():
+    url = "http://ipinfo.io/176.182.219.208?token=dd9c8e94d6c24d"
+    response = requests.get(url)
+    data = response.json()
+    return data['country']
 
-reponse = requests.get(url)
-contenu = reponse.json()
-print(reponse)
-print(contenu)
+print(fetch_data())
+
