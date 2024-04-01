@@ -11,7 +11,7 @@
     <div class="conteneur_listes">
         <div class="liste-anime">
             <h1>Top 6 anime</h1>
-            {% for anime in anime_list %}
+            {% for anime in anime_list|slice:":6" %}
                 <div class="anime-card">
                     <div class="card-inner">
                         <div class="card-front">
@@ -27,7 +27,7 @@
         </div>
         <div class="liste-manga">
             <h1>Top 6 manga</h1>
-            {% for manga in manga_list %}
+            {% for manga in manga_list|slice:":6" %}
                 <div class="anime-card">
                     <div class="card-inner"> 
                         <div class="card-front">
