@@ -1,3 +1,4 @@
+""" TEST
 import requests
 
 def fetch_data():
@@ -6,5 +7,5 @@ def fetch_data():
     data = response.json()
     return data['country']
 
-print(fetch_data())
+print(fetch_data()) """
 
