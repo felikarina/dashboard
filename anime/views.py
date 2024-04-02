@@ -32,6 +32,7 @@ def anime_list(request):
 
     manga_objects = Manga.objects.all()
     anime_objects = Anime.objects.all()
+    
     return render(request, 'anime/anime_list.html', {'anime_list': anime_objects[::-1], 'manga_list': manga_objects[::-1]})
 
 #informations sur les visites, l'ip et le user agent
