@@ -5,7 +5,7 @@ body {
     display: flex;
 }
 .counter, .adresseIP, .agent, .adressephy {
-    flex: 1;
+    flex: 1.2;
     border: solid;
     border-color: orange;
     color: orange;
@@ -14,7 +14,7 @@ body {
     text-align: center;
 }
 .counter {
-    margin: 120px 20px 150px 150px;
+    margin: 120px 20px 150px 0px;
     height: 400px;
     padding: 20px;
 }
@@ -24,7 +24,7 @@ body {
     flex-direction: column;
 }
 .adresseIP, .agent, .adressephy {
-    margin: 10px 120px 60px 60px;
+    margin: 10px 0px 60px 60px;
 }
 .bouton-rond {
     position: absolute;
@@ -40,3 +40,41 @@ body {
     width: 100%;
     height: auto;
 }
+.eye-container {
+    position: relative;
+    width: 200px;
+    height: 150px;
+    margin: -10px 0px 0px 64px;
+}
+#eye {
+    width: 100px;
+    height: 100px;
+    border: 2px solid orange;
+    border-radius: 50%;
+    position: absolute;
+    top: 25px;
+    transform: translateX(-50%);
+    overflow: hidden;
+    z-index: 2;
+    background: radial-gradient(circle at 50% 40%, #fcfcfc, #efeff1 66%, #9b5050 100%);
+}
+#pupil {
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle at 50% 50%, #000000 20%, orange 30%, #000000 100%);
+    border-radius: 50%;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s;
+}
+.angle {
+    margin: 100px;
+    width: 130px;
+    height: 130px;
+    border: solid 2px orange;
+    border-radius:  75% 15%;
+    position: relative;
+    transform: rotate(45deg);
+} 

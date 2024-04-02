@@ -22,7 +22,14 @@
         </div>            
         <a href="{% url 'anime_list' %}" class="bouton-rond">
             <img src="/static/moon.jpg" alt="moon">
-        </a>  
+        </a>
+        <div class="angle">
+            <div class="eye-container">
+                <div id="eye">
+                    <div id="pupil"></div>
+                </div>
+            </div>
+        </div>  
         <div class="counter">
             <h1>Number of visit : <br> {{ visit_counter }}</h1>
             {% for visit in visit_date %}
@@ -32,6 +39,20 @@
             {% endfor %}
         </div>  
     </div>
+    <script>
+        document.addEventListener('mousemove', function(e) {
+            const eye = document.getElementById('eye');
+            const pupil = document.getElementById('pupil');
+            const eyeRect = eye.getBoundingClientRect();
+            const eyeCenterX = eyeRect.left + eye.offsetWidth / 2;
+            const eyeCenterY = eyeRect.top + eye.offsetHeight / 2;
+            const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+            const radius = Math.min(eye.offsetWidth, eye.offsetHeight) / 3;
+            const pupilX = Math.cos(angle) * radius * 0.9;
+            const pupilY = Math.sin(angle) * radius * 0.9;
+            pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+        });
+    </script>
 </body>
 </html>
 
