@@ -42,9 +42,13 @@
             {% endfor %}
         </div>
     </div>
-    <a href="{% url 'dark' %}" class="bouton-rond">
+    <a href="{% url 'dark' %}" class="moon_button">
         <img src="/static/moon.jpg" alt="moon">
     </a>
+    <div id="result">
+    <button class="button" hx-get="{% url 'button' %}" hx-trigger="click" hx-target="#result">Click for the latest news</button>
+    </div>
+    <script src="https://unpkg.com/htmx.org@1.9.11"></script>
 </body>
 </html>
 

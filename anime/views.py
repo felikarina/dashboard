@@ -1,8 +1,13 @@
 import requests
+from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Anime
 from .models import Manga
 from .models import Visit
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 
 #informations sur anime et manga tiré de l'API Jikan
 def anime_list(request):
@@ -66,3 +71,30 @@ def dark(request):
         'org': org
     }
     return render(request, 'anime/dark.html', context)
+
+def button(request):
+    def search_news():    
+        driver = webdriver.Chrome()
+        driver.set_window_size(1900, 1000)
+        driver.get("https://myanimelist.net/")
+        driver.implicitly_wait(5)
+        element_intercept = driver.find_elements(By.CLASS_NAME, "qc-cmp-cleanslate")
+        if element_intercept:
+            webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
+        div_element = driver.find_element(By.CLASS_NAME, "news-unit-right")
+        first_link = div_element.find_element(By.TAG_NAME,"a")
+        first_link.click()
+        driver.implicitly_wait(5)
+        url = driver.current_url
+        driver.quit()
+        response = requests.get(url)
+        if response.status_code != 200:
+            print("requête échouée ", response.status_code)
+            return None  
+        soup = BeautifulSoup(response.content, 'html.parser')
+        news = soup.find("div", class_="content clearfix")
+        text = news.get_text(strip=True)[:800]
+        return text
+    result = search_news()
+
+    return HttpResponse(result)

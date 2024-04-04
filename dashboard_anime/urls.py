@@ -22,4 +22,5 @@ urlpatterns = [
     path('anime/', views.anime_list, name='anime_list'),
     path('anime/admin', admin.site.urls),
     path('dark/', views.dark, name='dark'),
+    path('anime/result', views.button, name='button')
 ]
