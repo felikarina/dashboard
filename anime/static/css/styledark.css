@@ -65,7 +65,7 @@ body {
     border-radius: 50%;
     position: absolute;
     top: 30%;
-    left: 30%;
+    left: 28%;
     transform: translate(-50%, -50%);
     transition: transform 0.1s;
 }

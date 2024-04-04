@@ -44,8 +44,8 @@
             const eye = document.getElementById('eye');
             const pupil = document.getElementById('pupil');
             const eyeRect = eye.getBoundingClientRect();
-            const eyeCenterX = eyeRect.left + eye.offsetWidth / 2;
-            const eyeCenterY = eyeRect.top + eye.offsetHeight / 2;
+            const eyeCenterX = eyeRect.left + eye.offsetWidth / 1;
+            const eyeCenterY = eyeRect.top + eye.offsetHeight / 3;
             const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
             const radius = Math.min(eye.offsetWidth, eye.offsetHeight) / 3;
             const pupilX = Math.cos(angle) * radius * 0.9;
