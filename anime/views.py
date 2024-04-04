@@ -8,6 +8,8 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 #informations sur anime et manga tiré de l'API Jikan
 def anime_list(request):
@@ -78,15 +80,15 @@ def button(request):
         driver = webdriver.Chrome()
         driver.set_window_size(1900, 1000)
         driver.get("https://myanimelist.net/")
-        driver.implicitly_wait(10)
+        driver.implicitly_wait(5)
         #éliminer d'éventuels pop up
         element_intercept = driver.find_elements(By.CLASS_NAME, "qc-cmp-cleanslate")
         if element_intercept:
             webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
-        driver.implicitly_wait(4)
-        element_intercept2 = driver.find_element(By.CSS_SELECTOR, '#gdpr-modal-bottom > div > div > div.button-wrapper > button')
-        if element_intercept2:
-            element_intercept2.click()
+        #element_intercept2 = driver.find_element(By.CSS_SELECTOR, '#gdpr-modal-bottom > div > div > div.button-wrapper > button')
+        #if element_intercept2:
+        #    element_intercept2.click()
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#gdpr-modal-bottom > div > div > div.button-wrapper > button"))).click()
         #cliquer sur le premier lien des news
         div_element = driver.find_element(By.CLASS_NAME, "news-unit-right")
         first_link = div_element.find_element(By.TAG_NAME,"a")
@@ -102,7 +104,7 @@ def button(request):
         #extraire uniquement le texte de la news
         soup = BeautifulSoup(response.content, 'html.parser')
         news = soup.find("div", class_="content clearfix")
-        text = news.get_text(strip=True)[:800]
+        text = news.get_text(strip=True)[:1000]
         return text
     result = search_news()
 
