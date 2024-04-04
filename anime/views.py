@@ -71,26 +71,35 @@ def dark(request):
         'org': org
     }
     return render(request, 'anime/dark.html', context)
-
+#Aller chercher la dernière news avec Selenium en passant sur le site web MyAnimeList
 def button(request):
     def search_news():    
+        #se rendre sur le site
         driver = webdriver.Chrome()
         driver.set_window_size(1900, 1000)
         driver.get("https://myanimelist.net/")
-        driver.implicitly_wait(5)
+        driver.implicitly_wait(10)
+        #éliminer d'éventuels pop up
         element_intercept = driver.find_elements(By.CLASS_NAME, "qc-cmp-cleanslate")
         if element_intercept:
             webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
+        driver.implicitly_wait(4)
+        element_intercept2 = driver.find_element(By.CSS_SELECTOR, '#gdpr-modal-bottom > div > div > div.button-wrapper > button')
+        if element_intercept2:
+            element_intercept2.click()
+        #cliquer sur le premier lien des news
         div_element = driver.find_element(By.CLASS_NAME, "news-unit-right")
         first_link = div_element.find_element(By.TAG_NAME,"a")
         first_link.click()
         driver.implicitly_wait(5)
+        #récupérer l'URL de la news
         url = driver.current_url
         driver.quit()
         response = requests.get(url)
         if response.status_code != 200:
             print("requête échouée ", response.status_code)
             return None  
+        #extraire uniquement le texte de la news
         soup = BeautifulSoup(response.content, 'html.parser')
         news = soup.find("div", class_="content clearfix")
         text = news.get_text(strip=True)[:800]

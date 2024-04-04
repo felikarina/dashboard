@@ -80,9 +80,21 @@
     border: solid;
     border-color: rgb(160, 160, 94);
     border-radius: 10px;
+    width: 300px;
+    height: 60px;
 }
-#result {
+.button:hover {
+    background-color: beige;
+}
+#button_location, #result {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+#result {
+    background-color: beige;
+    color: black;
+    border-radius: 10px;
+    margin: 30px;
+    padding: 10px;
 }

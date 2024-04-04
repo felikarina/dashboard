@@ -21,7 +21,7 @@
             </div>
         </div>            
         <a href="{% url 'anime_list' %}" class="bouton-rond">
-            <img src="/static/moon.jpg" alt="moon">
+            <img src="/static/soleil.jpg" alt="moon">
         </a>
         <div class="angle">
             <div class="eye-container">
@@ -39,13 +39,14 @@
             {% endfor %}
         </div>  
     </div>
+    <!-- animation de l'oeil pour que la pupille suive la souris -->
     <script>
         document.addEventListener('mousemove', function(e) {
             const eye = document.getElementById('eye');
             const pupil = document.getElementById('pupil');
             const eyeRect = eye.getBoundingClientRect();
-            const eyeCenterX = eyeRect.left + eye.offsetWidth / 1;
-            const eyeCenterY = eyeRect.top + eye.offsetHeight / 3;
+            const eyeCenterX = eyeRect.left + eye.offsetWidth / 2;
+            const eyeCenterY = eyeRect.top + eye.offsetHeight / 2;
             const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
             const radius = Math.min(eye.offsetWidth, eye.offsetHeight) / 3;
             const pupilX = Math.cos(angle) * radius * 0.9;
